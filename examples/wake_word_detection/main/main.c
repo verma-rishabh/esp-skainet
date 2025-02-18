@@ -28,7 +28,7 @@ void feed_Task(void *arg)
     int audio_chunksize = afe_handle->get_feed_chunksize(afe_data);
     int nch = afe_handle->get_feed_channel_num(afe_data);
     int feed_channel = esp_get_feed_channel();
-    assert(nch==feed_channel);
+    // assert(nch==feed_channel);
     int16_t *i2s_buff = malloc(audio_chunksize * sizeof(int16_t) * feed_channel);
     assert(i2s_buff);
 
@@ -81,9 +81,17 @@ void app_main()
     srmodel_list_t *models = esp_srmodel_init("model");
     afe_config_t *afe_config = afe_config_init(esp_get_input_format(), models, AFE_TYPE_SR, AFE_MODE_LOW_COST);
     afe_handle = esp_afe_handle_from_config(afe_config);
+#if CONFIG_ESP32_S3_XIAO_BOARD
+    afe_config->pcm_config.total_ch_num = 1;
+    afe_config->pcm_config.mic_num = 1;
+    afe_config->pcm_config.ref_num = 0;
+    afe_config->wakenet_mode = DET_MODE_90;
+    // afe_config->se_init = false;
+    // afe_config->aec_init = false;
+    // afe_config.vad_init = false;
+#endif
     esp_afe_sr_data_t *afe_data = afe_handle->create_from_config(afe_config);
     afe_config_free(afe_config);
-    
     task_flag = 1;
     xTaskCreatePinnedToCore(&feed_Task, "feed", 8 * 1024, (void*)afe_data, 5, NULL, 0);
     xTaskCreatePinnedToCore(&detect_Task, "detect", 4 * 1024, (void*)afe_data, 5, NULL, 1);

@@ -16,10 +16,10 @@ idf.py set-target esp32s3
 idf.py menuconfig
 
 # Select audio board
-Audio Media HAL -> Audio hardware board -> ESP32-S3-Korvo-1
+Audio Media HAL -> Audio hardware board -> ESP32-S3-XIAO
 
 # Load one wakenet model
-ESP Speech Recognition -> Select wake words -> Hi,Lexin (wn9_hilexin)
+ESP Speech Recognition -> Select wake words -> Alexa
 
 # Load multiple wakenet models
 ESP Speech Recognition -> Select wake words -> Hi,Lexin (wn9_hilexin) -> Load Multiple Wake Words

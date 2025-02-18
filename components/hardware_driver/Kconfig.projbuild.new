@@ -24,6 +24,9 @@ menu "Audio Media HAL"
         config ESP32_S3_EYE_BOARD
             bool "ESP32-S3-EYE"
             depends on IDF_TARGET_ESP32S3
+        config ESP32_S3_XIAO_BOARD
+            bool "ESP32-S3-Xiao"
+            depends on IDF_TARGET_ESP32S3
     endchoice
 
 endmenu

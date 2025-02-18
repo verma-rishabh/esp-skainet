@@ -2,7 +2,7 @@ menu "Audio Media HAL"
 
 choice AUDIO_BOARD
     prompt "Audio hardware board"
-    default ESP32_S3_KORVO_1_V4_0_BOARD
+    default ESP32_S3_XIAO_BOARD
     help
         Select an audio board to use
 
@@ -27,6 +27,12 @@ config ESP32_S3_EYE_BOARD
 config ESP32_P4_FUNCTION_EV_BOARD
     bool "ESP32-P4-Function_Ev"
     depends on IDF_TARGET_ESP32P4
+config ESP32_P4_FUNCTION_EV_BOARD
+    bool "ESP32-P4-Function_Ev"
+    depends on IDF_TARGET_ESP32P4
+config ESP32_S3_XIAO_BOARD
+    bool "ESP32-S3-Xiao"
+    depends on IDF_TARGET_ESP32S3
 endchoice
 
 endmenu
