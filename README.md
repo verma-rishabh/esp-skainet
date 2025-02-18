@@ -1,3 +1,4 @@
+# Mod: Added board : ESP32S3 XIAO
 # ESP-Skainet [[中文]](./README_cn.md)
 
 ESP-Skainet is Espressif's intelligent voice assistant, which currently supports the Wake Word Engine and Speech Commands Recognition.
